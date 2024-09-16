@@ -483,10 +483,11 @@ namespace morskoiBoi
 
 		int Ship1 = 4;
 		int Ship2 = 3;
-		bool poopok = true;
+		int Ship3 = 2;
+		int Ship4 = 1;
+
 	bool isHorizontal = true; // Ориентация корабля: true - горизонтальная, false - вертикальная
 	int currentShipSize = 0;   // Размер текущего корабля (устанавливается в зависимости от button1 - button4)
-	int Ship4 = 0;
 	String^ ffdfd = " абвгдежзик";
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
