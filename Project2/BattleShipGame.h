@@ -481,8 +481,8 @@ namespace morskoiBoi
 #pragma endregion
 	private:
 
-		int Ship = 4;
-		bool poopok = true;
+		int Ship1 = 4;
+		int Ship2 = 3;
 	bool isHorizontal = true; // Ориентация корабля: true - горизонтальная, false - вертикальная
 	int currentShipSize = 0;   // Размер текущего корабля (устанавливается в зависимости от button1 - button4)
 	int Ship4 = 0;
