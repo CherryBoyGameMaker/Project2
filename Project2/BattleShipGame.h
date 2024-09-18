@@ -374,15 +374,19 @@ namespace morskoiBoi
 					}
 					if (selectedShipSize == 1) {
 						Ship1--;
+						this->label7->Text = System::Convert::ToString(Ship1)+"/4";
 					}
 					else if (selectedShipSize == 2) {
 						Ship2--;
+						this->label6->Text = System::Convert::ToString(Ship2) + "/3";
 					}
 					else if (selectedShipSize == 3) {
 						Ship3--;
+						this->label5->Text = System::Convert::ToString(Ship3) + "/2";
 					}
 					else if (selectedShipSize == 4) {
 						Ship4--;
+						this->label4->Text = System::Convert::ToString(Ship4) + "/1";
 					}
 					for (int i = 0; i < selectedShipSize; i++)
 					{
