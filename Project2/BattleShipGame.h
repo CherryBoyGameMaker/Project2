@@ -344,6 +344,11 @@ namespace morskoiBoi
 				Panel^ parentPanel = (Panel^)clickedButton->Parent;
 				int startX = clickedButton->Location.X;
 				int startY = clickedButton->Location.Y;
+				int buf = selectedShipSize;
+				if (parentPanel == this->enemyBoardPanel)
+				{
+					selectedShipSize = 1;
+				}
 				if (isHorizontal)
 				{
 
@@ -427,6 +432,7 @@ namespace morskoiBoi
 						button->BackColor = Color::Red;
 					}
 				}
+				selectedShipSize =  buf;
 			}
 					
 		}
@@ -453,6 +459,11 @@ namespace morskoiBoi
 			Panel^ parentPanel = (Panel^)startButton->Parent;
 			int startX = startButton->Location.X;
 			int startY = startButton->Location.Y;
+			int buf = selectedShipSize;
+			if (parentPanel == this->enemyBoardPanel)
+			{
+				selectedShipSize = 1;
+			}
 			if (isHorizontal)
 			{
 				for (int i = 0; i < selectedShipSize; i++)
@@ -475,6 +486,7 @@ namespace morskoiBoi
 					}
 				}
 			}
+			selectedShipSize = buf;
 		}
 
 		// Обработчики нажатия на кнопки для выбора размера корабля
