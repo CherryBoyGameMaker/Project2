@@ -164,12 +164,12 @@ namespace morskoiBoi
 			playerBoardPanel = gcnew Panel();
 			enemyBoardPanel = gcnew Panel();
 
-			playerBoardPanel->Location = Point(20, 495);
-			playerBoardPanel->Size = System::Drawing::Size(440, 440);
+			playerBoardPanel->Location = Point(20, 35+20+ this->buttonSize * 11);
+			playerBoardPanel->Size = System::Drawing::Size(this->buttonSize*11, this->buttonSize * 11);
 			playerBoardPanel->BackColor = Color::LightBlue;
 
 			enemyBoardPanel->Location = Point(20, 35);
-			enemyBoardPanel->Size = System::Drawing::Size(440, 440);
+			enemyBoardPanel->Size = System::Drawing::Size(this->buttonSize * 11, this->buttonSize * 11);
 			enemyBoardPanel->BackColor = Color::LightCoral;
 
 			this->Controls->Add(playerBoardPanel);
@@ -312,8 +312,8 @@ namespace morskoiBoi
 				for (int j = 0; j < 11; j++)
 				{
 					Button^ button = gcnew Button();
-					button->Size = System::Drawing::Size(40, 40);
-					button->Location = Point(i * 40, j * 40);
+					button->Size = System::Drawing::Size(this->buttonSize, this->buttonSize);
+					button->Location = Point(i * this->buttonSize, j * this->buttonSize);
 					button->BackColor = Color::White;
 
 					if (i == 0 && j != 0)
@@ -354,12 +354,12 @@ namespace morskoiBoi
 					for (int i = 0; i < selectedShipSize; i++)
 					{
 						int counter = 0;
-						for (int x = startY - 40; x <= startY + 40 * 2 - 40; x += 40)
+						for (int x = startY - this->buttonSize ; x <= startY + this->buttonSize * 2 - this->buttonSize; x += this->buttonSize)
 						{
-							for (int y = startX + i * 40 - 40; y <= startX + i * 40 + 40 * 2 - 40; y += 40)
+							for (int y = startX + i * this->buttonSize - this->buttonSize; y <= startX + i * this->buttonSize + this->buttonSize * 2 - this->buttonSize; y += this->buttonSize)
 							{
 								counter++;
-								if (y > 400 || y < 40 || x>400 || x < 40)
+								if (y > this->buttonSize*20 || y < this->buttonSize || x>this->buttonSize*10 || x < this->buttonSize)
 								{
 									if (counter == 5)
 										return;
@@ -390,7 +390,7 @@ namespace morskoiBoi
 					}
 					for (int i = 0; i < selectedShipSize; i++)
 					{
-						Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX + i * 40, startY)));
+						Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX + i * this->buttonSize, startY)));
 						button->BackColor = Color::Red;
 					}
 				}
@@ -399,12 +399,12 @@ namespace morskoiBoi
 					for (int i = 0; i < selectedShipSize; i++)
 					{
 						int counter = 0;
-						for (int x = startY + i * 40 - 40; x <= startY + i * 40 + 40 * 2 - 40; x += 40)
+						for (int x = startY + i * this->buttonSize - this->buttonSize; x <= startY + i * this->buttonSize + this->buttonSize * 2 - this->buttonSize; x += this->buttonSize)
 						{
-							for (int y = startX - 40; y <= startX + 40 * 2 - 40; y += 40)
+							for (int y = startX - this->buttonSize; y <= startX + this->buttonSize * 2 - this->buttonSize; y += this->buttonSize)
 							{
 								counter++;
-								if (y > 400 || y < 40 || x>400 || x < 40)
+								if (y > this->buttonSize*10 || y < this->buttonSize || x>this->buttonSize*10 || x < this->buttonSize)
 								{
 									if (counter == 5)
 										return;
@@ -432,7 +432,7 @@ namespace morskoiBoi
 					}
 					for (int i = 0; i < selectedShipSize; i++)
 					{
-						Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX, startY + i * 40)));
+						Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX, startY + i * this->buttonSize)));
 						button->BackColor = Color::Red;
 					}
 				}
@@ -471,7 +471,7 @@ namespace morskoiBoi
 			{
 				for (int i = 0; i < selectedShipSize; i++)
 				{
-					Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX + i * 40, startY)));
+					Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX + i * this->buttonSize, startY)));
 					if (button != nullptr && button->BackColor != Color::Red)
 					{
 						button->BackColor = color;
@@ -482,7 +482,7 @@ namespace morskoiBoi
 			{
 				for (int i = 0; i < selectedShipSize; i++)
 				{
-					Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX , startY + i * 40)));
+					Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX , startY + i * this->buttonSize)));
 					if (button != nullptr && button->BackColor != Color::Red)
 					{
 						button->BackColor = color;
@@ -521,7 +521,7 @@ namespace morskoiBoi
 		}
 #pragma endregion
 	private:
-
+		int buttonSize =20;
 		int Ship1 = 4;
 		int Ship2 = 3;
 		int Ship3 = 2;
