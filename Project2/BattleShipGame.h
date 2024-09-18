@@ -338,17 +338,16 @@ namespace morskoiBoi
 		// Обработчик клика по кнопке
 		void OnCellClick(Object^ sender, EventArgs^ e)
 		{
-			if ((selectedShipSize == 1 && Ship1 != 0) || (selectedShipSize == 2 && Ship2 != 0) || (selectedShipSize == 3 && Ship3 != 0) || (selectedShipSize == 4 && Ship4 != 0)) {
-				Button^ clickedButton = (Button^)sender;
-				//clickedButton->BackColor = Color::Red; // Пример обработки: смена цвета кнопки на красный при клике
-				Panel^ parentPanel = (Panel^)clickedButton->Parent;
+			Button^ clickedButton = (Button^)sender;
+			Panel^ parentPanel = (Panel^)clickedButton->Parent;
+			if (parentPanel == this->enemyBoardPanel)
+			{
+				
+			}
+			else if ((selectedShipSize == 1 && Ship1 != 0) || (selectedShipSize == 2 && Ship2 != 0) || (selectedShipSize == 3 && Ship3 != 0) || (selectedShipSize == 4 && Ship4 != 0)) {
 				int startX = clickedButton->Location.X;
 				int startY = clickedButton->Location.Y;
-				int buf = selectedShipSize;
-				if (parentPanel == this->enemyBoardPanel)
-				{
-					selectedShipSize = 1;
-				}
+
 				if (isHorizontal)
 				{
 
@@ -432,7 +431,6 @@ namespace morskoiBoi
 						button->BackColor = Color::Red;
 					}
 				}
-				selectedShipSize =  buf;
 			}
 					
 		}
