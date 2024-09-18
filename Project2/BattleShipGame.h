@@ -359,9 +359,10 @@ namespace morskoiBoi
 							for (int y = startX + i * 40 - 40; y <= startX + i * 40 + 40 * 2 - 40; y += 40)
 							{
 								counter++;
-								if (y > 400 || y < 40 || x>400 || x < 40 && counter == 5)
+								if (y > 400 || y < 40 || x>400 || x < 40)
 								{
-									return;
+									if (counter == 5)
+										return;
 								}
 								Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(y, x)));
 								if (button != nullptr && button->BackColor == Color::Red)
