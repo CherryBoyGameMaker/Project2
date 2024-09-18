@@ -338,68 +338,94 @@ namespace morskoiBoi
 		// Обработчик клика по кнопке
 		void OnCellClick(Object^ sender, EventArgs^ e)
 		{
-			Button^ clickedButton = (Button^)sender;
-			//clickedButton->BackColor = Color::Red; // Пример обработки: смена цвета кнопки на красный при клике
-			Panel^ parentPanel = (Panel^)clickedButton->Parent;
-			int startX = clickedButton->Location.X;
-			int startY = clickedButton->Location.Y;
-			if (isHorizontal)
-			{
+			if ((selectedShipSize == 1 && Ship1 != 0) || (selectedShipSize == 2 && Ship2 != 0) || (selectedShipSize == 3 && Ship3 != 0) || (selectedShipSize == 4 && Ship4 != 0)) {
+				Button^ clickedButton = (Button^)sender;
+				//clickedButton->BackColor = Color::Red; // Пример обработки: смена цвета кнопки на красный при клике
+				Panel^ parentPanel = (Panel^)clickedButton->Parent;
+				int startX = clickedButton->Location.X;
+				int startY = clickedButton->Location.Y;
+				if (isHorizontal)
+				{
 
-				for (int i = 0; i < selectedShipSize; i++)
-				{
-					int counter = 0;
-					for (int x = startY-40; x <= startY + 40 * 2 - 40; x += 40)
+					for (int i = 0; i < selectedShipSize; i++)
 					{
-						for (int y = startX + i * 40-40; y <= startX + i * 40 + 40 * 2-40; y += 40)
+						int counter = 0;
+						for (int x = startY - 40; x <= startY + 40 * 2 - 40; x += 40)
 						{
-							counter++;
-							if (y > 400 || y < 40 || x>400 || x < 40 && counter == 5)
+							for (int y = startX + i * 40 - 40; y <= startX + i * 40 + 40 * 2 - 40; y += 40)
 							{
-								return;
-							}
-							Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(y, x)));
-							if (button != nullptr && button->BackColor == Color::Red)
-							{
-								return;
-							}
-						}
-					}
-				}
-				for (int i = 0; i < selectedShipSize; i++)
-				{
-					Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX + i * 40, startY)));
-					button->BackColor = Color::Red;
-				}
-			}
-			else
-			{
-				for (int i = 0; i < selectedShipSize; i++)
-				{
-					int counter = 0;
-					for (int x = startY + i * 40-40; x <= startY + i * 40 + 40 * 2 - 40; x += 40)
-					{
-						for (int y = startX-40; y <= startX + 40 * 2 - 40; y += 40)
-						{
-							counter++;
-							if (y > 400 || y < 40 || x>400 || x < 40)
-							{
-								if (counter == 5)
+								counter++;
+								if (y > 400 || y < 40 || x>400 || x < 40 && counter == 5)
+								{
 									return;
-
-							}
-							Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(y, x)));
-							if (button != nullptr && button->BackColor == Color::Red)
-							{
-								return;
+								}
+								Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(y, x)));
+								if (button != nullptr && button->BackColor == Color::Red)
+								{
+									return;
+								}
 							}
 						}
 					}
+					if (selectedShipSize == 1) {
+						Ship1--;
+					}
+					else if (selectedShipSize == 2) {
+						Ship2--;
+					}
+					else if (selectedShipSize == 3) {
+						Ship3--;
+					}
+					else if (selectedShipSize == 4) {
+						Ship4--;
+					}
+					for (int i = 0; i < selectedShipSize; i++)
+					{
+						Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX + i * 40, startY)));
+						button->BackColor = Color::Red;
+					}
 				}
-				for (int i = 0; i < selectedShipSize; i++)
+				else
 				{
-					Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX, startY + i * 40)));
-					button->BackColor = Color::Red;
+					for (int i = 0; i < selectedShipSize; i++)
+					{
+						int counter = 0;
+						for (int x = startY + i * 40 - 40; x <= startY + i * 40 + 40 * 2 - 40; x += 40)
+						{
+							for (int y = startX - 40; y <= startX + 40 * 2 - 40; y += 40)
+							{
+								counter++;
+								if (y > 400 || y < 40 || x>400 || x < 40)
+								{
+									if (counter == 5)
+										return;
+
+								}
+								Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(y, x)));
+								if (button != nullptr && button->BackColor == Color::Red)
+								{
+									return;
+								}
+							}
+						}
+					}
+					if (selectedShipSize == 1) {
+						Ship1--;
+					}
+					else if (selectedShipSize == 2) {
+						Ship2--;
+					}
+					else if (selectedShipSize == 3) {
+						Ship3--;
+					}
+					else if (selectedShipSize == 4) {
+						Ship4--;
+					}
+					for (int i = 0; i < selectedShipSize; i++)
+					{
+						Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX, startY + i * 40)));
+						button->BackColor = Color::Red;
+					}
 				}
 			}
 					
@@ -487,7 +513,7 @@ namespace morskoiBoi
 		int Ship4 = 1;
 
 	bool isHorizontal = true; // Ориентация корабля: true - горизонтальная, false - вертикальная
-	int currentShipSize = 0;   // Размер текущего корабля (устанавливается в зависимости от button1 - button4)
+	int currentShipSize = 1;   // Размер текущего корабля (устанавливается в зависимости от button1 - button4)
 	String^ ffdfd = " абвгдежзик";
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
