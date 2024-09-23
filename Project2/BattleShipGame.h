@@ -389,20 +389,63 @@ namespace morskoiBoi
 		bool CanPlaceShip( int x, int y, int size, bool isHorizontal)
 		{
 			for (int i = 0; i < size; i++)
-			{
+			{		
+				int counter = 0;
+				int curX = x;
+				int curY = y;
 				if (isHorizontal)
 				{
-					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x + this->buttonSize * i, y)));
-					if (button == nullptr  || button->BackColor != Color::White) // Проверка на наличие другого корабля
-						return false;
+
+					for (int x = curX - this->buttonSize; x <= curY + this->buttonSize * 2 - this->buttonSize; x += this->buttonSize)
+					{
+						for (int y = curX + i * this->buttonSize - this->buttonSize; y <= curX + i * this->buttonSize + this->buttonSize * 2 - this->buttonSize; y += this->buttonSize)
+						{
+							counter++;
+							if (y > this->buttonSize * 20 || y < this->buttonSize || x>this->buttonSize * 10 || x < this->buttonSize)
+							{
+								if (counter == 5)
+									return false;
+							}
+							Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(y, x)));
+							if (counter == 5 && button == nullptr)
+							{
+								return false;
+							}
+							if ((button != nullptr && button->BackColor == Color::Red))
+							{
+								return false;
+							}
+						}
+					}
 				}
 				else
 				{
-					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x , y + this->buttonSize * i)));
-					if (button == nullptr || button->BackColor != Color::White)
-						return false;
+					for (int x = curY + i * this->buttonSize - this->buttonSize; x <= curY + i * this->buttonSize + this->buttonSize * 2 - this->buttonSize; x += this->buttonSize)
+					{
+						for (int y = curX - this->buttonSize; y <= curX + this->buttonSize * 2 - this->buttonSize; y += this->buttonSize)
+						{
+							counter++;
+							if (y > this->buttonSize * 10 || y < this->buttonSize || x>this->buttonSize * 10 || x < this->buttonSize)
+							{
+								if (counter == 5)
+									return false;
+
+							}
+							Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(y, x)));
+							if (counter == 5 && button == nullptr)
+							{
+								return false;
+							}
+							if (button != nullptr && button->BackColor == Color::Red)
+							{
+								return false;
+							}
+						}
+					}
 				}
+
 			}
+
 			return true;
 		}
 
@@ -421,6 +464,7 @@ namespace morskoiBoi
 					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x, y + this->buttonSize * i)));
 					button->BackColor = Color::Blue;
 				}
+
 			}
 		}
 
