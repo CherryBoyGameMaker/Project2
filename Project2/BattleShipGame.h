@@ -367,12 +367,12 @@ namespace morskoiBoi
 					int startY;
 					if (isHorizontal)
 					{
-						startX = rand->Next(this->buttonSize+1, 12 * this->buttonSize - shipSize); // Учитываем размер корабля
+						startX = rand->Next(this->buttonSize+1, 12 * this->buttonSize - shipSize* this->buttonSize); // Учитываем размер корабля
 						startY = rand->Next(this->buttonSize+1, 12 * this->buttonSize );
 					}
 					else {
 						startX = rand->Next(this->buttonSize+1, 12 * this->buttonSize); // Учитываем размер корабля
-						startY = rand->Next(this->buttonSize+1, 12 * this->buttonSize - shipSize);
+						startY = rand->Next(this->buttonSize+1, 12 * this->buttonSize - shipSize * this->buttonSize);
 					}
 
 
