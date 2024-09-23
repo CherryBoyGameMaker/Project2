@@ -411,7 +411,7 @@ namespace morskoiBoi
 							{
 								return false;
 							}
-							if ((button != nullptr && button->BackColor == Color::Red))
+							if ((button != nullptr && button->BackColor == Color::Blue))
 							{
 								return false;
 							}
@@ -436,7 +436,7 @@ namespace morskoiBoi
 							{
 								return false;
 							}
-							if (button != nullptr && button->BackColor == Color::Red)
+							if (button != nullptr && button->BackColor == Color::Blue)
 							{
 								return false;
 							}
