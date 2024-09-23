@@ -375,7 +375,11 @@ namespace morskoiBoi
 										return;
 								}
 								Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(y, x)));
-								if (button != nullptr && button->BackColor == Color::Red)
+								if (counter == 5 && button == nullptr)
+								{
+									return;
+								}
+								if ((button != nullptr && button->BackColor == Color::Red))
 								{
 									return;
 								}
@@ -421,6 +425,10 @@ namespace morskoiBoi
 
 								}
 								Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(y, x)));
+								if (counter == 5 && button == nullptr)
+								{
+									return;
+								}
 								if (button != nullptr && button->BackColor == Color::Red)
 								{
 									return;
@@ -546,6 +554,9 @@ namespace morskoiBoi
 	String^ ffdfd = " абвгдежзик";
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	
+	//Добавить кнопку старт игры
+	//ИИ УУУ
+	//destruction
+	//определение победы
 };
 }
