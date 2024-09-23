@@ -521,7 +521,7 @@ namespace morskoiBoi
 		}
 #pragma endregion
 	private:
-		int buttonSize =20;
+		int buttonSize =30;
 		int Ship1 = 4;
 		int Ship2 = 3;
 		int Ship3 = 2;
