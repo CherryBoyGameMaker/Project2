@@ -165,6 +165,7 @@ namespace morskoiBoi
 			this->newGame->Visible = true;
 			this->newGame->Text = "Новая игра";
 			this->newGame->BackColor = Color::Olive;
+			this->newGame->Click += gcnew EventHandler(this, &MyForm::MyButton_Click);
 			this->Controls->Add(newGame);
 			// Инициализация формы
 			this->Text = "Морской бой пиратская версия";
@@ -309,7 +310,10 @@ namespace morskoiBoi
 
 
 		}
-
+		void MyForm::MyButton_Click(Object^ sender, EventArgs^ e)
+		{
+			PlaceAIShips();
+		}
 
 
 		int selectedShipSize = 0; // Размер текущего выбранного корабля
@@ -341,6 +345,81 @@ namespace morskoiBoi
 					button->MouseLeave += gcnew EventHandler(this, &MyForm::OnCellMouseLeave);
 
 					panel->Controls->Add(button);
+				}
+			}
+		}
+		// Функция для расстановки кораблей ИИ
+		void PlaceAIShips()
+		{
+			Random^ rand = gcnew Random();
+			array<int>^ shipSizes = { 4, 3, 3, 2, 2, 2, 1, 1, 1, 1 }; // Массив с размерами кораблей
+			//array<Button^, 2>^ enemyBoardButtons = gcnew array<Button^, 2>(11, 11);
+
+			for each (int shipSize in shipSizes)
+			{
+				bool placed = false;
+
+				while (!placed)
+				{
+					// Случайный выбор ориентации: 0 - горизонтальная, 1 - вертикальная
+					bool isHorizontal = rand->Next(2) == 0;
+					int startX;
+					int startY;
+					if (isHorizontal)
+					{
+						startX = rand->Next(this->buttonSize+1, 12 * this->buttonSize - shipSize); // Учитываем размер корабля
+						startY = rand->Next(this->buttonSize+1, 12 * this->buttonSize );
+					}
+					else {
+						startX = rand->Next(this->buttonSize+1, 12 * this->buttonSize); // Учитываем размер корабля
+						startY = rand->Next(this->buttonSize+1, 12 * this->buttonSize - shipSize);
+					}
+
+
+					if (CanPlaceShip(startX, startY, shipSize, isHorizontal))
+					{
+						PlaceShip(startX, startY, shipSize, isHorizontal);
+						placed = true;
+					}
+				}
+			}
+		}
+
+		// Проверка, можно ли разместить корабль
+		bool CanPlaceShip( int x, int y, int size, bool isHorizontal)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				if (isHorizontal)
+				{
+					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x + this->buttonSize * i, y)));
+					if (button == nullptr  || button->BackColor != Color::White) // Проверка на наличие другого корабля
+						return false;
+				}
+				else
+				{
+					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x , y + this->buttonSize * i)));
+					if (button == nullptr || button->BackColor != Color::White)
+						return false;
+				}
+			}
+			return true;
+		}
+
+		// Размещение корабля на поле
+		void PlaceShip(int x, int y, int size, bool isHorizontal)
+		{
+			for (int i = 0; i < size; i++)
+			{
+				if (isHorizontal)
+				{
+					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x + this->buttonSize * i, y)));
+					button->BackColor = Color::Blue; // Установка корабля на поле
+				}
+				else
+				{
+					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x, y + this->buttonSize * i)));
+					button->BackColor = Color::Blue;
 				}
 			}
 		}
