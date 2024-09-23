@@ -53,6 +53,7 @@ namespace morskoiBoi
 		Button^ button2;
 		Button^ button3;
 		Button^ button4;
+		Button^ newGame;
 
 		// Объявление компонента, который будет управлять элементами формы
 		System::ComponentModel::Container^ components;
@@ -80,6 +81,7 @@ namespace morskoiBoi
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->newGame = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -156,6 +158,14 @@ namespace morskoiBoi
 			this->button4->Visible = true;
 			this->button4->BackColor = Color::Olive;
 			this->groupBox3->Controls->Add(this->button4); // Добавление кнопки в groupBox3
+			// Создание и добавление кнопки 1
+			this->newGame = gcnew Button();
+			this->newGame->Location = Point(this->buttonSize*11+100, 20);
+			this->newGame->Size = System::Drawing::Size(125, 50);
+			this->newGame->Visible = true;
+			this->newGame->Text = "Новая игра";
+			this->newGame->BackColor = Color::Olive;
+			this->Controls->Add(newGame);
 			// Инициализация формы
 			this->Text = "Морской бой пиратская версия";
 			this->Size = System::Drawing::Size(1920, 1080);
@@ -420,15 +430,19 @@ namespace morskoiBoi
 					}
 					if (selectedShipSize == 1) {
 						Ship1--;
+						this->label7->Text = System::Convert::ToString(Ship1) + "/4";
 					}
 					else if (selectedShipSize == 2) {
 						Ship2--;
+						this->label6->Text = System::Convert::ToString(Ship2) + "/3";
 					}
 					else if (selectedShipSize == 3) {
 						Ship3--;
+						this->label5->Text = System::Convert::ToString(Ship3) + "/2";
 					}
 					else if (selectedShipSize == 4) {
 						Ship4--;
+						this->label4->Text = System::Convert::ToString(Ship4) + "/1";
 					}
 					for (int i = 0; i < selectedShipSize; i++)
 					{
