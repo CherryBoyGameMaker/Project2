@@ -388,10 +388,10 @@ namespace morskoiBoi
 
 		// ѕроверка, можно ли разместить корабль
 		void janitor() {
-			for (int x; x < 10; x++) {
-				for (int y; y < 10; y++) {
+			for (int x=this->buttonSize; x < 10*this->buttonSize+1; x+= this->buttonSize) {
+				for (int y= this->buttonSize; y < 10 * this->buttonSize + 1; y += this->buttonSize) {
 					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x, y)));
-					button->BackColor == Color::White;
+					button->BackColor = Color::White;
 				}
 
 			}
@@ -502,6 +502,8 @@ namespace morskoiBoi
 						{
 							for (int y = startX + i * this->buttonSize - this->buttonSize; y <= startX + i * this->buttonSize + this->buttonSize * 2 - this->buttonSize; y += this->buttonSize)
 							{
+
+								Console::WriteLine(y+" "+x);
 								counter++;
 								if (y > this->buttonSize*20 || y < this->buttonSize || x>this->buttonSize*10 || x < this->buttonSize)
 								{
