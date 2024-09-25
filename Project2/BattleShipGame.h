@@ -312,6 +312,7 @@ namespace morskoiBoi
 		}
 		void MyForm::MyButton_Click(Object^ sender, EventArgs^ e)
 		{
+			janitor();
 			PlaceAIShips();
 		}
 
@@ -386,6 +387,16 @@ namespace morskoiBoi
 		}
 
 		// ѕроверка, можно ли разместить корабль
+		void janitor() {
+			for (int x; x < 10; x++) {
+				for (int y; y < 10; y++) {
+					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x, y)));
+					button->BackColor == Color::White;
+				}
+
+			}
+
+		}
 		bool CanPlaceShip( int x, int y, int size, bool isHorizontal)
 		{
 			for (int i = 0; i < size; i++)
@@ -396,12 +407,12 @@ namespace morskoiBoi
 				if (isHorizontal)
 				{
 
-					for (int x = curX - this->buttonSize; x <= curY + this->buttonSize * 2 - this->buttonSize; x += this->buttonSize)
+					for (int x = curY - this->buttonSize; x <= curY + this->buttonSize * 2 - this->buttonSize; x += this->buttonSize)
 					{
 						for (int y = curX + i * this->buttonSize - this->buttonSize; y <= curX + i * this->buttonSize + this->buttonSize * 2 - this->buttonSize; y += this->buttonSize)
 						{
 							counter++;
-							if (y > this->buttonSize * 20 || y < this->buttonSize || x>this->buttonSize * 10 || x < this->buttonSize)
+							if (y > this->buttonSize * 10 || y < this->buttonSize || x>this->buttonSize * 10 || x < this->buttonSize)
 							{
 								if (counter == 5)
 									return false;
