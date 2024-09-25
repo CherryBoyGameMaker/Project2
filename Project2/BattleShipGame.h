@@ -422,7 +422,7 @@ namespace morskoiBoi
 							{
 								return false;
 							}
-							if ((button != nullptr && button->BackColor == Color::Blue))
+							if (button != nullptr && button->BackColor == Color::FromArgb(255,255,0))
 							{
 								return false;
 							}
@@ -447,7 +447,7 @@ namespace morskoiBoi
 							{
 								return false;
 							}
-							if (button != nullptr && button->BackColor == Color::Blue)
+							if (button != nullptr && button->BackColor == Color::FromArgb(255, 255, 0))
 							{
 								return false;
 							}
@@ -468,12 +468,12 @@ namespace morskoiBoi
 				if (isHorizontal)
 				{
 					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x + this->buttonSize * i, y)));
-					button->BackColor = Color::Blue; // Установка корабля на поле
+					button->BackColor = Color::FromArgb(255, 255, 0);
 				}
 				else
 				{
 					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x, y + this->buttonSize * i)));
-					button->BackColor = Color::Blue;
+					button->BackColor = Color::FromArgb(255, 255, 0);
 				}
 
 			}
@@ -486,7 +486,9 @@ namespace morskoiBoi
 			Panel^ parentPanel = (Panel^)clickedButton->Parent;
 			if (parentPanel == this->enemyBoardPanel)
 			{
-				
+				if (clickedButton->BackColor == Color::FromArgb(255, 255, 0)) {
+					clickedButton->Text = "X";
+				}
 			}
 			else if ((selectedShipSize == 1 && Ship1 != 0) || (selectedShipSize == 2 && Ship2 != 0) || (selectedShipSize == 3 && Ship3 != 0) || (selectedShipSize == 4 && Ship4 != 0)) {
 				int startX = clickedButton->Location.X;
@@ -616,15 +618,17 @@ namespace morskoiBoi
 		// Метод для выделения клеток под курсором в зависимости от размера корабля
 		void HighlightCellsUnderCursor(Button^ startButton, Color color)
 		{
-
 			Panel^ parentPanel = (Panel^)startButton->Parent;
+
+			if (parentPanel == this->enemyBoardPanel)
+			{
+				return;
+			}
+
+
 			int startX = startButton->Location.X;
 			int startY = startButton->Location.Y;
 			int buf = selectedShipSize;
-			if (parentPanel == this->enemyBoardPanel)
-			{
-				selectedShipSize = 1;
-			}
 			if (isHorizontal)
 			{
 				for (int i = 0; i < selectedShipSize; i++)
@@ -633,6 +637,7 @@ namespace morskoiBoi
 					if (button != nullptr && button->BackColor != Color::Red)
 					{
 						button->BackColor = color;
+					
 					}
 				}
 			}
