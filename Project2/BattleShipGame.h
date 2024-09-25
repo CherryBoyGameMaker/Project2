@@ -392,6 +392,7 @@ namespace morskoiBoi
 				for (int y= this->buttonSize; y < 10 * this->buttonSize + 1; y += this->buttonSize) {
 					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x, y)));
 					button->BackColor = Color::White;
+					button->Text = "";
 				}
 
 			}
@@ -484,11 +485,17 @@ namespace morskoiBoi
 		{
 			Button^ clickedButton = (Button^)sender;
 			Panel^ parentPanel = (Panel^)clickedButton->Parent;
-			if (parentPanel == this->enemyBoardPanel)
+			if (parentPanel == this->enemyBoardPanel && move && this->ShipsPlaced)
 			{
 				if (clickedButton->BackColor == Color::FromArgb(255, 255, 0)) {
 					clickedButton->Text = "X";
+					this->move = !move;
+					
 				}
+
+			}
+			if (parentPanel == this->enemyBoardPanel) {
+				return;
 			}
 			else if ((selectedShipSize == 1 && Ship1 != 0) || (selectedShipSize == 2 && Ship2 != 0) || (selectedShipSize == 3 && Ship3 != 0) || (selectedShipSize == 4 && Ship4 != 0)) {
 				int startX = clickedButton->Location.X;
@@ -597,6 +604,9 @@ namespace morskoiBoi
 					}
 				}
 			}
+			if (Ship1 + Ship2 + Ship3 + Ship4 == 0) {
+				this->ShipsPlaced = true;
+			}
 					
 		}
 
@@ -689,7 +699,8 @@ namespace morskoiBoi
 		int Ship2 = 3;
 		int Ship3 = 2;
 		int Ship4 = 1;
-
+		bool ShipsPlaced = false;
+		bool move = true; //false - игрок; true - враг
 	bool isHorizontal = true; // Ориентация корабля: true - горизонтальная, false - вертикальная
 	int currentShipSize = 1;   // Размер текущего корабля (устанавливается в зависимости от button1 - button4)
 	String^ ffdfd = " абвгдежзик";
