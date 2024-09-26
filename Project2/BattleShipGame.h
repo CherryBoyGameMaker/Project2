@@ -1,4 +1,9 @@
 #pragma once
+#include <cstdlib> 
+#include <ctime> 
+#include <random>
+#include <ctime>
+#include <cstdlib>
 
 namespace morskoiBoi
 	{
@@ -8,7 +13,6 @@ namespace morskoiBoi
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
-
 	/// <summary>
 	/// Сводка для MyForm
 	/// </summary>
@@ -46,6 +50,7 @@ namespace morskoiBoi
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label6;
 	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::Label^ ADHD;
 	private:
 		Panel^ playerBoardPanel; // Панель для отображения поля игрока
 		Panel^ enemyBoardPanel;  // Панель для отображения поля противника
@@ -54,6 +59,12 @@ namespace morskoiBoi
 		Button^ button3;
 		Button^ button4;
 		Button^ newGame;
+		Button^ autoPlaceShip;
+		Button^ clear;
+		Button^ dif1;
+		Button^ dif2;
+		Button^ dif3;
+		Button^ db;
 
 		// Объявление компонента, который будет управлять элементами формы
 		System::ComponentModel::Container^ components;
@@ -81,7 +92,10 @@ namespace morskoiBoi
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->ADHD = (gcnew System::Windows::Forms::Label());
 			this->newGame = (gcnew System::Windows::Forms::Button());
+			this->autoPlaceShip = (gcnew System::Windows::Forms::Button());
+			this->clear = (gcnew System::Windows::Forms::Button());
 			this->menuStrip1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -160,13 +174,80 @@ namespace morskoiBoi
 			this->groupBox3->Controls->Add(this->button4); // Добавление кнопки в groupBox3
 			// Создание и добавление кнопки 1
 			this->newGame = gcnew Button();
-			this->newGame->Location = Point(this->buttonSize*11+100, 20);
-			this->newGame->Size = System::Drawing::Size(125, 50);
+			this->newGame->Location = Point(this->buttonSize*11+100, this->buttonSize+5);
+			this->newGame->Size = System::Drawing::Size(125, 35);
 			this->newGame->Visible = true;
 			this->newGame->Text = "Новая игра";
 			this->newGame->BackColor = Color::Olive;
 			this->newGame->Click += gcnew EventHandler(this, &MyForm::MyButton_Click);
+
+			this->autoPlaceShip = gcnew Button();
+			this->autoPlaceShip->Location = Point(this->buttonSize * 11 + 100, this->buttonSize*12.5+10);
+			this->autoPlaceShip->Size = System::Drawing::Size(125, 35);
+			this->autoPlaceShip->Visible = true;
+			this->autoPlaceShip->Text = "Авто расстановка";
+			this->autoPlaceShip->BackColor = Color::Olive;
+			this->autoPlaceShip->Click += gcnew EventHandler(this, &MyForm::apsClick);
+
+			this->clear = gcnew Button();
+			this->clear->Location = Point(this->buttonSize * 11 + 100, this->buttonSize * 12.5 + 45);
+			this->clear->Size = System::Drawing::Size(125, 35);
+			this->clear->Visible = true;
+			this->clear->Text = "Очистить";
+			this->clear->BackColor = Color::Olive;
+			this->clear->Click += gcnew EventHandler(this, &MyForm::playerClear);
+
+
+			this->dif1 = gcnew Button();
+			this->dif1->Location = Point(this->buttonSize * 11 + 300, this->buttonSize * 12.5 + 80);
+			this->dif1->Size = System::Drawing::Size(125, 35);
+			this->dif1->Visible = true;
+			this->dif1->Text = "Silly cat";
+			this->dif1->BackColor = Color::Green;
+			this->dif1->Click += gcnew EventHandler(this, &MyForm::setDif1);
+
+
+			this->dif2 = gcnew Button();
+			this->dif2->Location = Point(this->buttonSize * 11 + 300, this->buttonSize * 12.5 + 45);
+			this->dif2->Size = System::Drawing::Size(125, 35);
+			this->dif2->Visible = true;
+			this->dif2->Text = "Angler";
+			this->dif2->BackColor = Color::Yellow;
+			this->dif2->Click += gcnew EventHandler(this, &MyForm::setDif2);
+
+			this->dif3 = gcnew Button();
+			this->dif3->Location = Point(this->buttonSize * 11 + 300, this->buttonSize * 12.5 + 10);
+			this->dif3->Size = System::Drawing::Size(125, 35);
+			this->dif3->Visible = true;
+			this->dif3->Text = "AAHW agent";
+			this->dif3->BackColor = Color::Red;
+			this->dif3->Click += gcnew EventHandler(this, &MyForm::setDif3);
+
+
+			this->db = gcnew Button();
+			this->db->Location = Point(this->buttonSize * 11 + 500, this->buttonSize * 12.5 + 10);
+			this->db->Size = System::Drawing::Size(125, 35);
+			this->db->Visible = true;
+			this->db->Text = "DEBUG";
+			this->db->BackColor = Color::Gray;
+			this->db->Click += gcnew EventHandler(this, &MyForm::turnDebug);
+
+			this->ADHD->AutoSize = true;
+			this->ADHD->Location = System::Drawing::Point(this->buttonSize * 12 + 300, this->buttonSize * 12.5 - 20);
+			this->ADHD->Name = L"adhd = 2";
+			this->ADHD->Size = System::Drawing::Size(139, 20);
+			this->ADHD->TabIndex = 4;
+			this->ADHD->Text = L"ADHD = 50";
+			this->ADHD->Hide();
+
 			this->Controls->Add(newGame);
+			this->Controls->Add(autoPlaceShip);
+			this->Controls->Add(clear);
+			this->Controls->Add(dif1);
+			this->Controls->Add(dif2);
+			this->Controls->Add(dif3);
+			this->Controls->Add(ADHD);
+			this->Controls->Add(db);
 			// Инициализация формы
 			this->Text = "Морской бой пиратская версия";
 			this->Size = System::Drawing::Size(1920, 1080);
@@ -310,10 +391,69 @@ namespace morskoiBoi
 
 
 		}
+		void MyForm::setDif1(Object^ sender, EventArgs^ e) {
+			AttentionDificitHyperactivityDisorder = 50;
+			this->ADHD->Text = L"ADHD = 50";
+		}
+		void MyForm::setDif2(Object ^ sender, EventArgs ^ e) {
+			AttentionDificitHyperactivityDisorder = 10;
+			this->ADHD->Text = L"ADHD = 10";
+		}
+		void MyForm::setDif3(Object^ sender, EventArgs^ e) {
+			AttentionDificitHyperactivityDisorder = 5;
+			this->ADHD->Text = L"ADHD = 5";
+		}
+		void MyForm::turnDebug(Object^ sender, EventArgs^ e) {
+			Debug();
+		}
+
+		void MyForm::playerClear(Object^ sender, EventArgs^ e) {
+			if (!GameStarted) {
+				Ship1 = 4;
+				Ship2 = 3;
+				Ship3 = 2;
+				Ship4 = 1;
+				this->label4->Text = "1/1";
+				this->label5->Text = "2/2";
+				this->label6->Text = "3/3";
+				this->label7->Text = "4/4";
+				move = true;
+				ShipsPlaced = false;
+				janitor(playerBoardPanel);
+			}
+		}
+		void MyForm::apsClick(Object^ sender, EventArgs^ e)
+		{
+			if (!GameStarted) {
+
+
+			Ship1 = 0;
+			Ship2 = 0;
+			Ship3 = 0;
+			Ship4 = 0;
+			
+			this->label4->Text = "0/1";
+			this->label5->Text = "0/2";
+			this->label6->Text = "0/3";
+			this->label7->Text = "0/4";
+
+			ShipsPlaced = true;
+			move = true;
+
+			janitor(playerBoardPanel);
+
+
+			PlaceAIShips(playerBoardPanel,playerShipIdleColor);
+			}
+
+		}
 		void MyForm::MyButton_Click(Object^ sender, EventArgs^ e)
 		{
-			janitor();
-			PlaceAIShips();
+			GameStarted = false;
+			janitor(playerBoardPanel);
+			janitor(enemyBoardPanel);
+			move = true;
+			PlaceAIShips(enemyBoardPanel,enemyShipIdleColor);
 		}
 
 
@@ -329,7 +469,7 @@ namespace morskoiBoi
 					Button^ button = gcnew Button();
 					button->Size = System::Drawing::Size(this->buttonSize, this->buttonSize);
 					button->Location = Point(i * this->buttonSize, j * this->buttonSize);
-					button->BackColor = Color::White;
+					button->BackColor = emptyCellColor;
 
 					if (i == 0 && j != 0)
 					{
@@ -350,10 +490,10 @@ namespace morskoiBoi
 			}
 		}
 		// Функция для расстановки кораблей ИИ
-		void PlaceAIShips()
+		void PlaceAIShips(Panel^ panel, Color idle)
 		{
 			Random^ rand = gcnew Random();
-			array<int>^ shipSizes = { 4, 3, 3, 2, 2, 2, 1, 1, 1, 1 }; // Массив с размерами кораблей
+			array<int>^ shipSizes = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1}; // Массив с размерами кораблей
 			//array<Button^, 2>^ enemyBoardButtons = gcnew array<Button^, 2>(11, 11);
 
 			for each (int shipSize in shipSizes)
@@ -377,9 +517,9 @@ namespace morskoiBoi
 					}
 
 
-					if (CanPlaceShip(startX, startY, shipSize, isHorizontal))
+					if (CanPlaceShip(startX, startY, shipSize, isHorizontal,panel,idle))
 					{
-						PlaceShip(startX, startY, shipSize, isHorizontal);
+						PlaceShip(startX, startY, shipSize, isHorizontal,panel,idle);
 						placed = true;
 					}
 				}
@@ -387,18 +527,20 @@ namespace morskoiBoi
 		}
 
 		// Проверка, можно ли разместить корабль
-		void janitor() {
+
+		void janitor(Panel^ panel) {
 			for (int x=this->buttonSize; x < 10*this->buttonSize+1; x+= this->buttonSize) {
 				for (int y= this->buttonSize; y < 10 * this->buttonSize + 1; y += this->buttonSize) {
-					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x, y)));
-					button->BackColor = Color::White;
+					Button^ button = dynamic_cast<Button^>(panel->GetChildAtPoint(Point(x, y)));
+					button->BackColor = emptyCellColor;
 					button->Text = "";
 				}
 
 			}
 
 		}
-		bool CanPlaceShip( int x, int y, int size, bool isHorizontal)
+
+		bool CanPlaceShip(int x, int y, int size, bool isHorizontal, Panel^ panel, Color idle)
 		{
 			for (int i = 0; i < size; i++)
 			{		
@@ -418,12 +560,12 @@ namespace morskoiBoi
 								if (counter == 5)
 									return false;
 							}
-							Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(y, x)));
+							Button^ button = dynamic_cast<Button^>(panel->GetChildAtPoint(Point(y, x)));
 							if (counter == 5 && button == nullptr)
 							{
 								return false;
 							}
-							if (button != nullptr && button->BackColor == Color::FromArgb(255,255,0))
+							if (button != nullptr && button->BackColor == idle)
 							{
 								return false;
 							}
@@ -443,12 +585,12 @@ namespace morskoiBoi
 									return false;
 
 							}
-							Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(y, x)));
+							Button^ button = dynamic_cast<Button^>(panel->GetChildAtPoint(Point(y, x)));
 							if (counter == 5 && button == nullptr)
 							{
 								return false;
 							}
-							if (button != nullptr && button->BackColor == Color::FromArgb(255, 255, 0))
+							if (button != nullptr && button->BackColor == idle)
 							{
 								return false;
 							}
@@ -462,19 +604,19 @@ namespace morskoiBoi
 		}
 
 		// Размещение корабля на поле
-		void PlaceShip(int x, int y, int size, bool isHorizontal)
+		void PlaceShip(int x, int y, int size, bool isHorizontal,Panel^ panel, Color idle)
 		{
 			for (int i = 0; i < size; i++)
 			{
 				if (isHorizontal)
 				{
-					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x + this->buttonSize * i, y)));
-					button->BackColor = Color::FromArgb(255, 255, 0);
+					Button^ button = dynamic_cast<Button^>(panel->GetChildAtPoint(Point(x + this->buttonSize * i, y)));
+					button->BackColor = idle;
 				}
 				else
 				{
-					Button^ button = dynamic_cast<Button^>(this->enemyBoardPanel->GetChildAtPoint(Point(x, y + this->buttonSize * i)));
-					button->BackColor = Color::FromArgb(255, 255, 0);
+					Button^ button = dynamic_cast<Button^>(panel->GetChildAtPoint(Point(x, y + this->buttonSize * i)));
+					button->BackColor = idle;
 				}
 
 			}
@@ -487,10 +629,18 @@ namespace morskoiBoi
 			Panel^ parentPanel = (Panel^)clickedButton->Parent;
 			if (parentPanel == this->enemyBoardPanel && move && this->ShipsPlaced)
 			{
-				if (clickedButton->BackColor == Color::FromArgb(255, 255, 0)) {
+				if (clickedButton->BackColor == enemyShipIdleColor && clickedButton->Text == "") {
+					clickedButton->BackColor = enemyShipDestroyedColor;
 					clickedButton->Text = "X";
+
+
+				}
+				else if (clickedButton->BackColor == emptyCellColor && clickedButton->Text == "")
+				{
+					clickedButton->BackColor = emptyCellDestroyedColor;
+					clickedButton->Text = "-";
 					this->move = !move;
-					
+					EnemyShoot();
 				}
 
 			}
@@ -524,7 +674,7 @@ namespace morskoiBoi
 								{
 									return;
 								}
-								if ((button != nullptr && button->BackColor == Color::Red))
+								if ((button != nullptr && button->BackColor == playerShipIdleColor))
 								{
 									return;
 								}
@@ -550,7 +700,7 @@ namespace morskoiBoi
 					for (int i = 0; i < selectedShipSize; i++)
 					{
 						Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX + i * this->buttonSize, startY)));
-						button->BackColor = Color::Red;
+						button->BackColor = playerShipIdleColor;
 					}
 				}
 				else
@@ -574,7 +724,7 @@ namespace morskoiBoi
 								{
 									return;
 								}
-								if (button != nullptr && button->BackColor == Color::Red)
+								if (button != nullptr && button->BackColor == playerShipIdleColor)
 								{
 									return;
 								}
@@ -600,7 +750,7 @@ namespace morskoiBoi
 					for (int i = 0; i < selectedShipSize; i++)
 					{
 						Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX, startY + i * this->buttonSize)));
-						button->BackColor = Color::Red;
+						button->BackColor = playerShipIdleColor;
 					}
 				}
 			}
@@ -613,7 +763,7 @@ namespace morskoiBoi
 		void OnCellMouseEnter(Object^ sender, EventArgs^ e)
 		{
 			Button^ hoveredButton = (Button^)sender;
-			HighlightCellsUnderCursor(hoveredButton, Color::Pink);
+			HighlightCellsUnderCursor(hoveredButton, highlightColor);
 		}
 
 
@@ -621,7 +771,7 @@ namespace morskoiBoi
 		void OnCellMouseLeave(Object^ sender, EventArgs^ e)
 		{
 			Button^ hoveredButton = (Button^)sender;
-			HighlightCellsUnderCursor(hoveredButton, Color::White);
+			HighlightCellsUnderCursor(hoveredButton,emptyCellColor);
 		}
 
 
@@ -644,7 +794,7 @@ namespace morskoiBoi
 				for (int i = 0; i < selectedShipSize; i++)
 				{
 					Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX + i * this->buttonSize, startY)));
-					if (button != nullptr && button->BackColor != Color::Red)
+					if (button != nullptr && button->BackColor != playerShipIdleColor && button->BackColor != playerShipDestroyedColor && button->BackColor != emptyCellDestroyedColor)
 					{
 						button->BackColor = color;
 					
@@ -655,16 +805,71 @@ namespace morskoiBoi
 			{
 				for (int i = 0; i < selectedShipSize; i++)
 				{
-					Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX , startY + i * this->buttonSize)));
-					if (button != nullptr && button->BackColor != Color::Red)
+					Button^ button = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(Point(startX + i * this->buttonSize, startY)));
+					if (button != nullptr && button->BackColor != playerShipIdleColor && button->BackColor != playerShipDestroyedColor && button->BackColor != emptyCellDestroyedColor)
 					{
 						button->BackColor = color;
+
 					}
 				}
 			}
 			selectedShipSize = buf;
 		}
+		void Debug() {
+			this->ADHD->Show();
+			enemyShipIdleColor = Color::Blue;
+			enemyShipDestroyedColor = Color::DarkBlue;
+		}
+		void EnemyShoot() {
+			doublemove = !doublemove;
+			GameStarted = true;
+			int pos = rand()%100;
+			int x = ceil(pos / 10)+1;
+			int y = x*10-pos;
 
+			Console::WriteLine(x);
+			Console::WriteLine(y);
+			Button^ button = dynamic_cast<Button^>(this->playerBoardPanel->GetChildAtPoint(Point(x*buttonSize, y*buttonSize)));
+			button->BackColor == emptyCellDestroyedColor;
+
+
+			if (button->Text == "X" || button->Text == "-") {
+				EnemyShoot();
+				return;
+			}
+			if (button->BackColor == emptyCellDestroyedColor && button->Text != "-") {
+				this->move = true;
+				return;
+			}
+			else {
+
+
+				this->move = true;
+				if (button->BackColor == playerShipIdleColor) {
+
+					button->BackColor = playerShipDestroyedColor;
+					button->Text = "X";
+					this->move = false;
+
+					EnemyShoot();
+
+				}
+				else
+				{
+					if (pos % AttentionDificitHyperactivityDisorder == 0) {
+						EnemyShoot();
+						return;
+					}
+					if (doublemove) {
+						EnemyShoot();
+						return;
+					}
+					button->Text = "-";
+					button->BackColor = emptyCellDestroyedColor;
+				}
+				
+			}
+		}
 		// Обработчики нажатия на кнопки для выбора размера корабля
 		void OnShipButtonClicked(Object^ sender, EventArgs^ e)
 		{
@@ -699,8 +904,32 @@ namespace morskoiBoi
 		int Ship2 = 3;
 		int Ship3 = 2;
 		int Ship4 = 1;
+
+
+		bool doublemove = 0;
+		bool GameStarted = false;
 		bool ShipsPlaced = false;
+		bool isPlayerWin = 0;
+		bool isEnemyWin = 0;
 		bool move = true; //false - игрок; true - враг
+
+
+		Color playerShipIdleColor = Color::Red;
+		Color playerShipDestroyedColor = Color::DarkRed;
+
+		Color enemyShipIdleColor = Color::FromArgb(255,255,254);
+		Color enemyShipDestroyedColor = Color::Blue;
+
+		Color emptyCellDestroyedColor = Color::FromArgb(200, 200, 200);
+		Color emptyCellColor = Color::White;
+
+		Color highlightColor = Color::Pink;
+		
+
+		int AttentionDificitHyperactivityDisorder = 50;
+
+		String^ enemy;
+
 	bool isHorizontal = true; // Ориентация корабля: true - горизонтальная, false - вертикальная
 	int currentShipSize = 1;   // Размер текущего корабля (устанавливается в зависимости от button1 - button4)
 	String^ ffdfd = " абвгдежзик";
