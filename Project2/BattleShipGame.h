@@ -450,9 +450,12 @@ namespace morskoiBoi
 		void MyForm::MyButton_Click(Object^ sender, EventArgs^ e)
 		{
 			GameStarted = false;
+			this->EnemyShips = 20;
+			this->PlayerShips = 20;
 			janitor(playerBoardPanel);
 			janitor(enemyBoardPanel);
 			move = true;
+			this->gameEnd = false;
 			PlaceAIShips(enemyBoardPanel,enemyShipIdleColor);
 		}
 
@@ -625,7 +628,9 @@ namespace morskoiBoi
 		// Обработчик клика по кнопке
 		void OnCellClick(Object^ sender, EventArgs^ e)
 		{
-
+			if (this->gameEnd) {
+				return;
+			}
 			Button^ clickedButton = (Button^)sender;
 			Panel^ parentPanel = (Panel^)clickedButton->Parent;
 			if (parentPanel == this->enemyBoardPanel && move && this->ShipsPlaced)
@@ -633,8 +638,9 @@ namespace morskoiBoi
 				if (clickedButton->BackColor == enemyShipIdleColor && clickedButton->Text == "") {
 					clickedButton->BackColor = enemyShipDestroyedColor;
 					clickedButton->Text = "X";
-					isWin();
+
 					this->EnemyShips -= 1;
+					isWin();
 
 
 				}
@@ -820,6 +826,7 @@ namespace morskoiBoi
 			selectedShipSize = buf;
 		}
 		void Debug() {
+			this->ADHD->Text = this->PlayerShips + " " + this->EnemyShips;
 			if (this->debug)
 			{
 				this->ADHD->Show();
@@ -907,9 +914,11 @@ namespace morskoiBoi
 		{
 			if (this->EnemyShips == 0 && this->PlayerShips > 0) {
 				MessageBox::Show("Победа", "Вы победили!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				this->gameEnd = true;
 			}
 			else if (this->PlayerShips == 0) {
 				MessageBox::Show("Поражение!", "Ты проиграл", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				this->gameEnd = true;
 			}
 		}
 
@@ -939,6 +948,7 @@ namespace morskoiBoi
 		bool ShipsPlaced = false;
 		bool isPlayerWin = 0;
 		bool isEnemyWin = 0;
+		bool gameEnd = false;
 		bool move = true; //false - игрок; true - враг
 
 
