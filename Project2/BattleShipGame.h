@@ -641,7 +641,9 @@ namespace morskoiBoi
 
 					this->EnemyShips -= 1;
 					isWin();
-
+					if (CheckDeadInside(clickedButton->Location, this->enemyBoardPanel)) {
+						MessageBox::Show("ГОООООЙДА", "Корабль уничтожен!", MessageBoxButtons::OK, MessageBoxIcon::Information);
+					}
 
 				}
 				else if (clickedButton->BackColor == emptyCellColor && clickedButton->Text == "")
@@ -826,12 +828,10 @@ namespace morskoiBoi
 			selectedShipSize = buf;
 		}
 		void Debug() {
-			this->ADHD->Text = this->PlayerShips + " " + this->EnemyShips;
 			if (this->debug)
 			{
 				this->ADHD->Show();
 				enemyShipIdleColor = Color::Blue;
-				//enemyShipDestroyedColor = Color::Red;
 				this->debug = false;
 			}
 			else
@@ -841,6 +841,79 @@ namespace morskoiBoi
 				this->debug = true;
 			}
 		}
+		bool CheckDeadCell(Point loc, Panel^ parentPanel, Point direct)
+		{
+
+			Console::WriteLine("МЕМ, кого смотрим");
+
+			Button^ buf = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(loc));
+			Console::WriteLine(buf->BackColor);
+			// Проверяем, если клетка пустая или уже разрушенная
+			if (buf->BackColor == this->emptyCellColor || buf->BackColor == this->emptyCellDestroyedColor)
+				return false;
+			if ((buf->BackColor == this->enemyShipDestroyedColor || buf->BackColor == this->playerShipDestroyedColor) && !(direct.X == 0 && direct.Y == 0))
+			{
+				bool dead = true;
+				do
+				{
+					loc.X += direct.X;
+					loc.Y += direct.Y;
+					buf = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(loc));
+					if (buf->BackColor == this->playerShipIdleColor || buf->BackColor == this->enemyShipIdleColor) {
+						dead = false;
+						break;
+					}
+				} while (buf != nullptr && buf->BackColor != this->emptyCellColor && buf->BackColor != this->enemyShipIdleColor);
+
+
+				return dead;
+			}
+			else
+				return false;
+		}
+
+		bool CheckDeadInside(Point loc, Panel^ parentPanel)
+		{
+			// Если клетка уже разрушена или пуста
+			if (CheckDeadCell(loc, parentPanel, Point(0, 0)))
+				return false;
+
+			bool dead = true;
+
+			// Проверяем клетки вокруг по горизонтали и вертикали
+			array<Point>^ directions = gcnew array<Point>{ Point(-this->buttonSize, 0), Point(this->buttonSize, 0), Point(0, -this->buttonSize), Point(0, this->buttonSize) };
+
+			for each (Point dir in directions)
+			{
+				Point checkLoc(loc.X + dir.X, loc.Y + dir.Y);
+				Button^ buf = dynamic_cast<Button^>(parentPanel->GetChildAtPoint(checkLoc));
+
+				if (buf != nullptr)
+				{
+					Console::WriteLine("buf по кому:");
+					Console::WriteLine(buf->BackColor);
+
+					// Если есть неразрушенная часть корабля, корабль не считается уничтоженным
+					if (buf->BackColor == this->playerShipIdleColor || buf->BackColor == this->enemyShipIdleColor)
+					{
+						Console::WriteLine("if");
+						dead = false;
+						break;
+					}
+					else if (buf->BackColor == this->playerShipDestroyedColor || buf->BackColor == this->enemyShipDestroyedColor)
+					{
+
+						Console::WriteLine("else if");
+
+						dead = CheckDeadCell(checkLoc, parentPanel, dir);
+						
+					}
+				}
+			}
+
+			return dead;
+		}
+
 		void EnemyShoot() {
 			doublemove = !doublemove;
 			GameStarted = true;
@@ -956,7 +1029,7 @@ namespace morskoiBoi
 		Color playerShipDestroyedColor = Color::DarkRed;
 
 		Color enemyShipIdleColor = Color::FromArgb(255,255,254);
-		Color enemyShipDestroyedColor = Color::Blue;
+		Color enemyShipDestroyedColor = Color::DarkBlue;
 
 		Color emptyCellDestroyedColor = Color::FromArgb(200, 200, 200);
 		Color emptyCellColor = Color::White;
