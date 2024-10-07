@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <cstdlib> 
 #include <ctime> 
 #include <random>
@@ -14,7 +14,7 @@ namespace morskoiBoi
 	using namespace System::Data;
 	using namespace System::Drawing;
 	/// <summary>
-	/// Сводка для MyForm
+	/// РЎРІРѕРґРєР° РґР»СЏ MyForm
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
@@ -23,7 +23,7 @@ namespace morskoiBoi
 	
 	protected:
 		/// <summary>
-		/// Освободить все используемые ресурсы.
+		/// РћСЃРІРѕР±РѕРґРёС‚СЊ РІСЃРµ РёСЃРїРѕР»СЊР·СѓРµРјС‹Рµ СЂРµСЃСѓСЂСЃС‹.
 		/// </summary>
 		~MyForm()
 		{
@@ -34,11 +34,11 @@ namespace morskoiBoi
 		}
 	private: System::Windows::Forms::MenuStrip^ menuStrip1;
 	protected:
-	private: System::Windows::Forms::ToolStripMenuItem^ менюToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ новаяИграToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ РјРµРЅСЋToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ РЅРѕРІР°СЏРРіСЂР°ToolStripMenuItem;
 
-	private: System::Windows::Forms::ToolStripMenuItem^ информацияToolStripMenuItem;
-	private: System::Windows::Forms::ToolStripMenuItem^ выходToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ РёРЅС„РѕСЂРјР°С†РёСЏToolStripMenuItem;
+	private: System::Windows::Forms::ToolStripMenuItem^ РІС‹С…РѕРґToolStripMenuItem;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::PictureBox^ pictureBox2;
 	private: System::Windows::Forms::Label^ label1;
@@ -52,8 +52,8 @@ namespace morskoiBoi
 	private: System::Windows::Forms::Label^ label7;
 	private: System::Windows::Forms::Label^ ADHD;
 	private:
-		Panel^ playerBoardPanel; // Панель для отображения поля игрока
-		Panel^ enemyBoardPanel;  // Панель для отображения поля противника
+		Panel^ playerBoardPanel; // РџР°РЅРµР»СЊ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕР»СЏ РёРіСЂРѕРєР°
+		Panel^ enemyBoardPanel;  // РџР°РЅРµР»СЊ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РїРѕР»СЏ РїСЂРѕС‚РёРІРЅРёРєР°
 		Button^ button1;
 		Button^ button2;
 		Button^ button3;
@@ -66,21 +66,21 @@ namespace morskoiBoi
 		Button^ dif3;
 		Button^ db;
 
-		// Объявление компонента, который будет управлять элементами формы
+		// РћР±СЉСЏРІР»РµРЅРёРµ РєРѕРјРїРѕРЅРµРЅС‚Р°, РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ СѓРїСЂР°РІР»СЏС‚СЊ СЌР»РµРјРµРЅС‚Р°РјРё С„РѕСЂРјС‹
 		System::ComponentModel::Container^ components;
 	
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// Требуемый метод для поддержки конструктора — не изменяйте 
-		/// содержимое этого метода с помощью редактора кода.
+		/// РўСЂРµР±СѓРµРјС‹Р№ РјРµС‚РѕРґ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° вЂ” РЅРµ РёР·РјРµРЅСЏР№С‚Рµ 
+		/// СЃРѕРґРµСЂР¶РёРјРѕРµ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° СЃ РїРѕРјРѕС‰СЊСЋ СЂРµРґР°РєС‚РѕСЂР° РєРѕРґР°.
 		/// </summary>
 		void InitializeComponent(void)
 		{
 			this->menuStrip1 = (gcnew System::Windows::Forms::MenuStrip());
-			this->менюToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->новаяИграToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->информацияToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->выходToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->РјРµРЅСЋToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->РЅРѕРІР°СЏРРіСЂР°ToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->РёРЅС„РѕСЂРјР°С†РёСЏToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->РІС‹С…РѕРґToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
@@ -106,7 +106,7 @@ namespace morskoiBoi
 			this->groupBox3->Size = System::Drawing::Size(800, 300);
 			this->groupBox3->TabIndex = 7;
 			this->groupBox3->TabStop = false;
-			this->groupBox3->Text = L"ваши корабли";
+			this->groupBox3->Text = L"РІР°С€Рё РєРѕСЂР°Р±Р»Рё";
 			this->Controls->Add(groupBox3);
 
 			this->label4->AutoSize = true;
@@ -141,43 +141,43 @@ namespace morskoiBoi
 			this->label7->Text = L"4/4";
 			this->groupBox3->Controls->Add(this->label7);
 
-			// Создание и добавление кнопки 1
+			// РЎРѕР·РґР°РЅРёРµ Рё РґРѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё 1
 			this->button1 = gcnew Button();
 			this->button1->Location = Point(10, 25);
 			this->button1->Size = System::Drawing::Size(50, 200);
 			this->button1->Visible = true;
 			this->button1->BackColor = Color::Olive;
-			this->groupBox3->Controls->Add(this->button1); // Добавление кнопки в groupBox3
+			this->groupBox3->Controls->Add(this->button1); // Р”РѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё РІ groupBox3
 
-			// Создание и добавление кнопки 2
+			// РЎРѕР·РґР°РЅРёРµ Рё РґРѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё 2
 			this->button2 = gcnew Button();
 			this->button2->Location = Point(100, 25);
 			this->button2->Size = System::Drawing::Size(50, 150);
 			this->button2->Visible = true;
 			this->button2->BackColor = Color::Olive;
-			this->groupBox3->Controls->Add(this->button2); // Добавление кнопки в groupBox3
+			this->groupBox3->Controls->Add(this->button2); // Р”РѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё РІ groupBox3
 
-			// Создание и добавление кнопки 3
+			// РЎРѕР·РґР°РЅРёРµ Рё РґРѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё 3
 			this->button3 = gcnew Button();
 			this->button3->Location = Point(190, 25);
 			this->button3->Size = System::Drawing::Size(50, 100);
 			this->button3->Visible = true;
 			this->button3->BackColor = Color::Olive;
-			this->groupBox3->Controls->Add(this->button3); // Добавление кнопки в groupBox3
+			this->groupBox3->Controls->Add(this->button3); // Р”РѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё РІ groupBox3
 
-			// Создание и добавление кнопки 4
+			// РЎРѕР·РґР°РЅРёРµ Рё РґРѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё 4
 			this->button4 = gcnew Button();
 			this->button4->Location = Point(280, 25);
 			this->button4->Size = System::Drawing::Size(50, 50);
 			this->button4->Visible = true;
 			this->button4->BackColor = Color::Olive;
-			this->groupBox3->Controls->Add(this->button4); // Добавление кнопки в groupBox3
-			// Создание и добавление кнопки 1
+			this->groupBox3->Controls->Add(this->button4); // Р”РѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё РІ groupBox3
+			// РЎРѕР·РґР°РЅРёРµ Рё РґРѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРєРё 1
 			this->newGame = gcnew Button();
 			this->newGame->Location = Point(this->buttonSize*11+100, this->buttonSize+5);
 			this->newGame->Size = System::Drawing::Size(125, 35);
 			this->newGame->Visible = true;
-			this->newGame->Text = "Новая игра";
+			this->newGame->Text = "РќРѕРІР°СЏ РёРіСЂР°";
 			this->newGame->BackColor = Color::Olive;
 			this->newGame->Click += gcnew EventHandler(this, &MyForm::MyButton_Click);
 
@@ -185,7 +185,7 @@ namespace morskoiBoi
 			this->autoPlaceShip->Location = Point(this->buttonSize * 11 + 100, this->buttonSize*12.5+10);
 			this->autoPlaceShip->Size = System::Drawing::Size(125, 35);
 			this->autoPlaceShip->Visible = true;
-			this->autoPlaceShip->Text = "Авто расстановка";
+			this->autoPlaceShip->Text = "РђРІС‚Рѕ СЂР°СЃСЃС‚Р°РЅРѕРІРєР°";
 			this->autoPlaceShip->BackColor = Color::Olive;
 			this->autoPlaceShip->Click += gcnew EventHandler(this, &MyForm::apsClick);
 
@@ -193,7 +193,7 @@ namespace morskoiBoi
 			this->clear->Location = Point(this->buttonSize * 11 + 100, this->buttonSize * 12.5 + 45);
 			this->clear->Size = System::Drawing::Size(125, 35);
 			this->clear->Visible = true;
-			this->clear->Text = "Очистить";
+			this->clear->Text = "РћС‡РёСЃС‚РёС‚СЊ";
 			this->clear->BackColor = Color::Olive;
 			this->clear->Click += gcnew EventHandler(this, &MyForm::playerClear);
 
@@ -248,11 +248,11 @@ namespace morskoiBoi
 			this->Controls->Add(dif3);
 			this->Controls->Add(ADHD);
 			this->Controls->Add(db);
-			// Инициализация формы
-			this->Text = "Морской бой пиратская версия";
+			// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ С„РѕСЂРјС‹
+			this->Text = "РњРѕСЂСЃРєРѕР№ Р±РѕР№ РїРёСЂР°С‚СЃРєР°СЏ РІРµСЂСЃРёСЏ";
 			this->Size = System::Drawing::Size(1920, 1080);
 
-			// Инициализация панелей для поля игрока и противника
+			// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїР°РЅРµР»РµР№ РґР»СЏ РїРѕР»СЏ РёРіСЂРѕРєР° Рё РїСЂРѕС‚РёРІРЅРёРєР°
 			playerBoardPanel = gcnew Panel();
 			enemyBoardPanel = gcnew Panel();
 
@@ -267,7 +267,7 @@ namespace morskoiBoi
 			this->Controls->Add(playerBoardPanel);
 			this->Controls->Add(enemyBoardPanel);
 
-			// Добавление кнопок для каждой клетки на поле
+			// Р”РѕР±Р°РІР»РµРЅРёРµ РєРЅРѕРїРѕРє РґР»СЏ РєР°Р¶РґРѕР№ РєР»РµС‚РєРё РЅР° РїРѕР»Рµ
 			InitializeBoard(playerBoardPanel);
 			InitializeBoard(enemyBoardPanel);
 			// 
@@ -276,8 +276,8 @@ namespace morskoiBoi
 			this->menuStrip1->GripMargin = System::Windows::Forms::Padding(2, 2, 0, 2);
 			this->menuStrip1->ImageScalingSize = System::Drawing::Size(24, 24);
 			this->menuStrip1->Items->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
-				this->менюToolStripMenuItem,
-					this->информацияToolStripMenuItem, this->выходToolStripMenuItem
+				this->РјРµРЅСЋToolStripMenuItem,
+					this->РёРЅС„РѕСЂРјР°С†РёСЏToolStripMenuItem, this->РІС‹С…РѕРґToolStripMenuItem
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
@@ -285,30 +285,30 @@ namespace morskoiBoi
 			this->menuStrip1->TabIndex = 0;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
-			// менюToolStripMenuItem
+			// РјРµРЅСЋToolStripMenuItem
 			// 
-			this->менюToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->новаяИграToolStripMenuItem });
-			this->менюToolStripMenuItem->Name = L"менюToolStripMenuItem";
-			this->менюToolStripMenuItem->Size = System::Drawing::Size(75, 29);
-			this->менюToolStripMenuItem->Text = L"меню";
+			this->РјРµРЅСЋToolStripMenuItem->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(1) { this->РЅРѕРІР°СЏРРіСЂР°ToolStripMenuItem });
+			this->РјРµРЅСЋToolStripMenuItem->Name = L"РјРµРЅСЋToolStripMenuItem";
+			this->РјРµРЅСЋToolStripMenuItem->Size = System::Drawing::Size(75, 29);
+			this->РјРµРЅСЋToolStripMenuItem->Text = L"РјРµРЅСЋ";
 			// 
-			// новаяИграToolStripMenuItem
+			// РЅРѕРІР°СЏРРіСЂР°ToolStripMenuItem
 			// 
-			this->новаяИграToolStripMenuItem->Name = L"новаяИграToolStripMenuItem";
-			this->новаяИграToolStripMenuItem->Size = System::Drawing::Size(270, 34);
-			this->новаяИграToolStripMenuItem->Text = L"новаяИгра";
+			this->РЅРѕРІР°СЏРРіСЂР°ToolStripMenuItem->Name = L"РЅРѕРІР°СЏРРіСЂР°ToolStripMenuItem";
+			this->РЅРѕРІР°СЏРРіСЂР°ToolStripMenuItem->Size = System::Drawing::Size(270, 34);
+			this->РЅРѕРІР°СЏРРіСЂР°ToolStripMenuItem->Text = L"РЅРѕРІР°СЏРРіСЂР°";
 			// 
-			// информацияToolStripMenuItem
+			// РёРЅС„РѕСЂРјР°С†РёСЏToolStripMenuItem
 			// 
-			this->информацияToolStripMenuItem->Name = L"информацияToolStripMenuItem";
-			this->информацияToolStripMenuItem->Size = System::Drawing::Size(134, 29);
-			this->информацияToolStripMenuItem->Text = L"информация";
+			this->РёРЅС„РѕСЂРјР°С†РёСЏToolStripMenuItem->Name = L"РёРЅС„РѕСЂРјР°С†РёСЏToolStripMenuItem";
+			this->РёРЅС„РѕСЂРјР°С†РёСЏToolStripMenuItem->Size = System::Drawing::Size(134, 29);
+			this->РёРЅС„РѕСЂРјР°С†РёСЏToolStripMenuItem->Text = L"РёРЅС„РѕСЂРјР°С†РёСЏ";
 			// 
-			// выходToolStripMenuItem
+			// РІС‹С…РѕРґToolStripMenuItem
 			// 
-			this->выходToolStripMenuItem->Name = L"выходToolStripMenuItem";
-			this->выходToolStripMenuItem->Size = System::Drawing::Size(80, 29);
-			this->выходToolStripMenuItem->Text = L"выход";
+			this->РІС‹С…РѕРґToolStripMenuItem->Name = L"РІС‹С…РѕРґToolStripMenuItem";
+			this->РІС‹С…РѕРґToolStripMenuItem->Size = System::Drawing::Size(80, 29);
+			this->РІС‹С…РѕРґToolStripMenuItem->Text = L"РІС‹С…РѕРґ";
 			// 
 			// pictureBox1
 			// 
@@ -333,7 +333,7 @@ namespace morskoiBoi
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(139, 20);
 			this->label1->TabIndex = 4;
-			this->label1->Text = L"<- поле противника";
+			this->label1->Text = L"<- РїРѕР»Рµ РїСЂРѕС‚РёРІРЅРёРєР°";
 			// 
 			// label2
 			// 
@@ -342,7 +342,7 @@ namespace morskoiBoi
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(86, 20);
 			this->label2->TabIndex = 5;
-			this->label2->Text = L"<- твоё поле";
+			this->label2->Text = L"<- С‚РІРѕС‘ РїРѕР»Рµ";
 			// 
 			// groupBox2
 			// 
@@ -352,7 +352,7 @@ namespace morskoiBoi
 			this->groupBox2->Size = System::Drawing::Size(327, 93);
 			this->groupBox2->TabIndex = 7;
 			this->groupBox2->TabStop = false;
-			this->groupBox2->Text = L"игра окончена";
+			this->groupBox2->Text = L"РёРіСЂР° РѕРєРѕРЅС‡РµРЅР°";
 			// 
 			// label3
 			// 
@@ -361,7 +361,7 @@ namespace morskoiBoi
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(158, 20);
 			this->label3->TabIndex = 0;
-			this->label3->Text = L"перезапустите игру";
+			this->label3->Text = L"РїРµСЂРµР·Р°РїСѓСЃС‚РёС‚Рµ РёРіСЂСѓ";
 			// 
 			// MyForm
 			// 
@@ -386,7 +386,7 @@ namespace morskoiBoi
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
-			this->KeyPreview = true; // Чтобы форма могла обрабатывать нажатия клавиш
+			this->KeyPreview = true; // Р§С‚РѕР±С‹ С„РѕСЂРјР° РјРѕРіР»Р° РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ РЅР°Р¶Р°С‚РёСЏ РєР»Р°РІРёС€
 			this->KeyDown += gcnew KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 
 
@@ -457,11 +457,11 @@ namespace morskoiBoi
 		}
 
 
-		int selectedShipSize = 0; // Размер текущего выбранного корабля
+		int selectedShipSize = 0; // Р Р°Р·РјРµСЂ С‚РµРєСѓС‰РµРіРѕ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РєРѕСЂР°Р±Р»СЏ
 		
 		void InitializeBoard(Panel^ panel)
 		{
-			// Создание сетки из 10x10 кнопок для каждой панели
+			// РЎРѕР·РґР°РЅРёРµ СЃРµС‚РєРё РёР· 10x10 РєРЅРѕРїРѕРє РґР»СЏ РєР°Р¶РґРѕР№ РїР°РЅРµР»Рё
 			for (int i = 0; i < 11; i++)
 			{
 				for (int j = 0; j < 11; j++)
@@ -480,7 +480,7 @@ namespace morskoiBoi
 						button->Text = System::Convert::ToString(ffdfd[i]);
 					}
 
-					// Привязка обработчиков событий для кликов и наведения курсора
+					// РџСЂРёРІСЏР·РєР° РѕР±СЂР°Р±РѕС‚С‡РёРєРѕРІ СЃРѕР±С‹С‚РёР№ РґР»СЏ РєР»РёРєРѕРІ Рё РЅР°РІРµРґРµРЅРёСЏ РєСѓСЂСЃРѕСЂР°
 					button->Click += gcnew EventHandler(this, &MyForm::OnCellClick);
 					button->MouseEnter += gcnew EventHandler(this, &MyForm::OnCellMouseEnter);
 					button->MouseLeave += gcnew EventHandler(this, &MyForm::OnCellMouseLeave);
@@ -489,11 +489,11 @@ namespace morskoiBoi
 				}
 			}
 		}
-		// Функция для расстановки кораблей ИИ
+		// Р¤СѓРЅРєС†РёСЏ РґР»СЏ СЂР°СЃСЃС‚Р°РЅРѕРІРєРё РєРѕСЂР°Р±Р»РµР№ РР
 		void PlaceAIShips(Panel^ panel, Color idle)
 		{
 			Random^ rand = gcnew Random();
-			array<int>^ shipSizes = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1}; // Массив с размерами кораблей
+			array<int>^ shipSizes = {4, 3, 3, 2, 2, 2, 1, 1, 1, 1}; // РњР°СЃСЃРёРІ СЃ СЂР°Р·РјРµСЂР°РјРё РєРѕСЂР°Р±Р»РµР№
 			//array<Button^, 2>^ enemyBoardButtons = gcnew array<Button^, 2>(11, 11);
 
 			for each (int shipSize in shipSizes)
@@ -502,17 +502,17 @@ namespace morskoiBoi
 
 				while (!placed)
 				{
-					// Случайный выбор ориентации: 0 - горизонтальная, 1 - вертикальная
+					// РЎР»СѓС‡Р°Р№РЅС‹Р№ РІС‹Р±РѕСЂ РѕСЂРёРµРЅС‚Р°С†РёРё: 0 - РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ, 1 - РІРµСЂС‚РёРєР°Р»СЊРЅР°СЏ
 					bool isHorizontal = rand->Next(2) == 0;
 					int startX;
 					int startY;
 					if (isHorizontal)
 					{
-						startX = rand->Next(this->buttonSize+1, 12 * this->buttonSize - shipSize* this->buttonSize); // Учитываем размер корабля
+						startX = rand->Next(this->buttonSize+1, 12 * this->buttonSize - shipSize* this->buttonSize); // РЈС‡РёС‚С‹РІР°РµРј СЂР°Р·РјРµСЂ РєРѕСЂР°Р±Р»СЏ
 						startY = rand->Next(this->buttonSize+1, 12 * this->buttonSize );
 					}
 					else {
-						startX = rand->Next(this->buttonSize+1, 12 * this->buttonSize); // Учитываем размер корабля
+						startX = rand->Next(this->buttonSize+1, 12 * this->buttonSize); // РЈС‡РёС‚С‹РІР°РµРј СЂР°Р·РјРµСЂ РєРѕСЂР°Р±Р»СЏ
 						startY = rand->Next(this->buttonSize+1, 12 * this->buttonSize - shipSize * this->buttonSize);
 					}
 
@@ -526,7 +526,7 @@ namespace morskoiBoi
 			}
 		}
 
-		// Проверка, можно ли разместить корабль
+		// РџСЂРѕРІРµСЂРєР°, РјРѕР¶РЅРѕ Р»Рё СЂР°Р·РјРµСЃС‚РёС‚СЊ РєРѕСЂР°Р±Р»СЊ
 
 		void janitor(Panel^ panel) {
 			for (int x=this->buttonSize; x < 10*this->buttonSize+1; x+= this->buttonSize) {
@@ -603,7 +603,7 @@ namespace morskoiBoi
 			return true;
 		}
 
-		// Размещение корабля на поле
+		// Р Р°Р·РјРµС‰РµРЅРёРµ РєРѕСЂР°Р±Р»СЏ РЅР° РїРѕР»Рµ
 		void PlaceShip(int x, int y, int size, bool isHorizontal,Panel^ panel, Color idle)
 		{
 			for (int i = 0; i < size; i++)
@@ -622,9 +622,10 @@ namespace morskoiBoi
 			}
 		}
 
-		// Обработчик клика по кнопке
+		// РћР±СЂР°Р±РѕС‚С‡РёРє РєР»РёРєР° РїРѕ РєРЅРѕРїРєРµ
 		void OnCellClick(Object^ sender, EventArgs^ e)
 		{
+
 			Button^ clickedButton = (Button^)sender;
 			Panel^ parentPanel = (Panel^)clickedButton->Parent;
 			if (parentPanel == this->enemyBoardPanel && move && this->ShipsPlaced)
@@ -632,6 +633,8 @@ namespace morskoiBoi
 				if (clickedButton->BackColor == enemyShipIdleColor && clickedButton->Text == "") {
 					clickedButton->BackColor = enemyShipDestroyedColor;
 					clickedButton->Text = "X";
+					isWin();
+					this->EnemyShips -= 1;
 
 
 				}
@@ -776,7 +779,7 @@ namespace morskoiBoi
 		}
 
 
-		// Метод для выделения клеток под курсором в зависимости от размера корабля
+		// РњРµС‚РѕРґ РґР»СЏ РІС‹РґРµР»РµРЅРёСЏ РєР»РµС‚РѕРє РїРѕРґ РєСѓСЂСЃРѕСЂРѕРј РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ СЂР°Р·РјРµСЂР° РєРѕСЂР°Р±Р»СЏ
 		void HighlightCellsUnderCursor(Button^ startButton, Color color)
 		{
 			Panel^ parentPanel = (Panel^)startButton->Parent;
@@ -860,8 +863,9 @@ namespace morskoiBoi
 
 					button->BackColor = playerShipDestroyedColor;
 					button->Text = "X";
+					this->PlayerShips -= 1;
 					this->move = false;
-
+					isWin();
 					EnemyShoot();
 
 				}
@@ -882,7 +886,7 @@ namespace morskoiBoi
 			}
 			//isWin(this->enemyBoardPanel);
 		}
-		// Обработчики нажатия на кнопки для выбора размера корабля
+		// РћР±СЂР°Р±РѕС‚С‡РёРєРё РЅР°Р¶Р°С‚РёСЏ РЅР° РєРЅРѕРїРєРё РґР»СЏ РІС‹Р±РѕСЂР° СЂР°Р·РјРµСЂР° РєРѕСЂР°Р±Р»СЏ
 		void OnShipButtonClicked(Object^ sender, EventArgs^ e)
 		{
 			Button^ clickedButton = (Button^)sender;
@@ -896,59 +900,21 @@ namespace morskoiBoi
 		{
 			if (e->KeyCode == Keys::R)
 			{
-				isHorizontal = !isHorizontal; // Переключение ориентации корабля
+				isHorizontal = !isHorizontal; // РџРµСЂРµРєР»СЋС‡РµРЅРёРµ РѕСЂРёРµРЅС‚Р°С†РёРё РєРѕСЂР°Р±Р»СЏ
 			}
 		}
-		void isWin(Panel^ panel)
+		void isWin()
 		{
-			bool enemyShipsRemaining = false;
-			bool playerShipsRemaining = false;
-
-			// Проверяем вражеское поле
-			for each (Control ^ control in panel->Controls)
-			{
-				Button^ button = dynamic_cast<Button^>(control);
-				if (button != nullptr)
-				{
-					// Проверяем наличие оставшихся клеток врага
-					if (button->BackColor == enemyShipIdleColor)
-					{
-						enemyShipsRemaining = true; // Остались корабли врага
-						break; // Выходим из цикла, если хотя бы один корабль найден
-					}
-				}
+			if (this->EnemyShips == 0 && this->PlayerShips > 0) {
+				MessageBox::Show("РџРѕР±РµРґР°", "Р’С‹ РїРѕР±РµРґРёР»Рё!", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
-
-			// Проверяем наше поле
-			for each (Control ^ control in this->playerBoardPanel->Controls)
-			{
-				Button^ button = dynamic_cast<Button^>(control);
-				if (button != nullptr)
-				{
-					// Проверяем наличие оставшихся наших кораблей
-					if (button->BackColor == playerShipIdleColor)
-					{
-						playerShipsRemaining = true; // Остались наши корабли
-						break; // Выходим из цикла, если хотя бы один корабль найден
-					}
-				}
-			}
-
-			// Проверяем условия победы
-			if (!enemyShipsRemaining)
-			{
-				MessageBox::Show("Поздравляем! Вы победили!", "Победа", MessageBoxButtons::OK, MessageBoxIcon::Information);
-				isPlayerWin = true; // Обновляем состояние победы игрока
-			}
-			else if (!playerShipsRemaining)
-			{
-				MessageBox::Show("К сожалению, вы проиграли!", "Поражение", MessageBoxButtons::OK, MessageBoxIcon::Information);
-				isEnemyWin = true; // Обновляем состояние победы врага
+			else if (this->PlayerShips == 0) {
+				MessageBox::Show("РџРѕСЂР°Р¶РµРЅРёРµ!", "РўС‹ РїСЂРѕРёРіСЂР°Р»", MessageBoxButtons::OK, MessageBoxIcon::Information);
 			}
 		}
 
 		public:
-		// Привязка обработчиков событий к кнопкам выбора корабля
+		// РџСЂРёРІСЏР·РєР° РѕР±СЂР°Р±РѕС‚С‡РёРєРѕРІ СЃРѕР±С‹С‚РёР№ Рє РєРЅРѕРїРєР°Рј РІС‹Р±РѕСЂР° РєРѕСЂР°Р±Р»СЏ
 		MyForm()
 		{
 			InitializeComponent();
@@ -964,6 +930,8 @@ namespace morskoiBoi
 		int Ship2 = 3;
 		int Ship3 = 2;
 		int Ship4 = 1;
+		int EnemyShips = 20;
+		int PlayerShips = 20;
 
 		bool debug = true;
 		bool doublemove = 0;
@@ -971,7 +939,7 @@ namespace morskoiBoi
 		bool ShipsPlaced = false;
 		bool isPlayerWin = 0;
 		bool isEnemyWin = 0;
-		bool move = true; //false - игрок; true - враг
+		bool move = true; //false - РёРіСЂРѕРє; true - РІСЂР°Рі
 
 
 		Color playerShipIdleColor = Color::Red;
@@ -990,14 +958,14 @@ namespace morskoiBoi
 
 		String^ enemy;
 
-	bool isHorizontal = true; // Ориентация корабля: true - горизонтальная, false - вертикальная
-	int currentShipSize = 1;   // Размер текущего корабля (устанавливается в зависимости от button1 - button4)
-	String^ ffdfd = " абвгдежзик";
+	bool isHorizontal = true; // РћСЂРёРµРЅС‚Р°С†РёСЏ РєРѕСЂР°Р±Р»СЏ: true - РіРѕСЂРёР·РѕРЅС‚Р°Р»СЊРЅР°СЏ, false - РІРµСЂС‚РёРєР°Р»СЊРЅР°СЏ
+	int currentShipSize = 1;   // Р Р°Р·РјРµСЂ С‚РµРєСѓС‰РµРіРѕ РєРѕСЂР°Р±Р»СЏ (СѓСЃС‚Р°РЅР°РІР»РёРІР°РµС‚СЃСЏ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ button1 - button4)
+	String^ ffdfd = " Р°Р±РІРіРґРµР¶Р·РёРє";
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
-	//Добавить кнопку старт игры
-	//ИИ УУУ
+	//Р”РѕР±Р°РІРёС‚СЊ РєРЅРѕРїРєСѓ СЃС‚Р°СЂС‚ РёРіСЂС‹
+	//РР РЈРЈРЈ
 	//destruction
-	//определение победы
+	//РѕРїСЂРµРґРµР»РµРЅРёРµ РїРѕР±РµРґС‹
 };
 }
