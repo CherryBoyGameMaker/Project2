@@ -642,6 +642,7 @@ namespace morskoiBoi
 					this->move = !move;
 					EnemyShoot();
 				}
+				//isWin(this->playerBoardPanel);
 
 			}
 			if (parentPanel == this->enemyBoardPanel) {
@@ -816,9 +817,19 @@ namespace morskoiBoi
 			selectedShipSize = buf;
 		}
 		void Debug() {
-			this->ADHD->Show();
-			enemyShipIdleColor = Color::Blue;
-			enemyShipDestroyedColor = Color::DarkBlue;
+			if (this->debug)
+			{
+				this->ADHD->Show();
+				enemyShipIdleColor = Color::Blue;
+				//enemyShipDestroyedColor = Color::Red;
+				this->debug = false;
+			}
+			else
+			{
+				this->ADHD->Hide();
+				enemyShipIdleColor = Color::FromArgb(255, 255, 254);
+				this->debug = true;
+			}
 		}
 		void EnemyShoot() {
 			doublemove = !doublemove;
@@ -869,6 +880,7 @@ namespace morskoiBoi
 				}
 				
 			}
+			//isWin(this->enemyBoardPanel);
 		}
 		// Обработчики нажатия на кнопки для выбора размера корабля
 		void OnShipButtonClicked(Object^ sender, EventArgs^ e)
@@ -887,6 +899,54 @@ namespace morskoiBoi
 				isHorizontal = !isHorizontal; // Переключение ориентации корабля
 			}
 		}
+		void isWin(Panel^ panel)
+		{
+			bool enemyShipsRemaining = false;
+			bool playerShipsRemaining = false;
+
+			// Проверяем вражеское поле
+			for each (Control ^ control in panel->Controls)
+			{
+				Button^ button = dynamic_cast<Button^>(control);
+				if (button != nullptr)
+				{
+					// Проверяем наличие оставшихся клеток врага
+					if (button->BackColor == enemyShipIdleColor)
+					{
+						enemyShipsRemaining = true; // Остались корабли врага
+						break; // Выходим из цикла, если хотя бы один корабль найден
+					}
+				}
+			}
+
+			// Проверяем наше поле
+			for each (Control ^ control in this->playerBoardPanel->Controls)
+			{
+				Button^ button = dynamic_cast<Button^>(control);
+				if (button != nullptr)
+				{
+					// Проверяем наличие оставшихся наших кораблей
+					if (button->BackColor == playerShipIdleColor)
+					{
+						playerShipsRemaining = true; // Остались наши корабли
+						break; // Выходим из цикла, если хотя бы один корабль найден
+					}
+				}
+			}
+
+			// Проверяем условия победы
+			if (!enemyShipsRemaining)
+			{
+				MessageBox::Show("Поздравляем! Вы победили!", "Победа", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				isPlayerWin = true; // Обновляем состояние победы игрока
+			}
+			else if (!playerShipsRemaining)
+			{
+				MessageBox::Show("К сожалению, вы проиграли!", "Поражение", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				isEnemyWin = true; // Обновляем состояние победы врага
+			}
+		}
+
 		public:
 		// Привязка обработчиков событий к кнопкам выбора корабля
 		MyForm()
@@ -905,7 +965,7 @@ namespace morskoiBoi
 		int Ship3 = 2;
 		int Ship4 = 1;
 
-
+		bool debug = true;
 		bool doublemove = 0;
 		bool GameStarted = false;
 		bool ShipsPlaced = false;
